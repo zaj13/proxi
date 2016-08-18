@@ -2,8 +2,7 @@ Package: proxi
 Title: Statistical Facilitation
 Version: 0.0.0.9000
 Authors@R: person("Laslo", "Gabor", email = "gaborla@stud.sbg.ac.at", role = c("aut", "cre"))
-Description: This package provides an easier access to statistical analysis by
-    combining several connected functions into a single command.
+Description: This package provides an easier access to statistical analysis by combining several functions into a single command.
 Depends:
     R (>= 3.3.1)
 Imports:
