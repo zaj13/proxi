@@ -14,7 +14,7 @@ anova(data, dependent.var, group.var)
 \item{group.var}{Grouping variable of the data frame. Can be greater 2.}
 }
 \description{
-This function calculates an ANOVA and relevant supplementary statistics.
+This function calculates a One-Way ANOVA and relevant supplementary statistics.
 }
 \examples{
 carsp <- data.frame(speed = cars$speed, group = as.factor(sample(1:3,nrow(cars),replace = TRUE)))

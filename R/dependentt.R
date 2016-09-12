@@ -25,11 +25,15 @@ dependentt <- function(data, dependent.var1, dependent.var2){
   dependent.var1 <- eval(substitute(dependent.var1), data, parent.frame())
   results <- -1
   
+  qqnorm(dependent.var2 - dependent.var1)
+  qqline(dependent.var2 - dependent.var1)
+  
   results <- list(normShapiro = shapiro.test(dependent.var2 - dependent.var1),
                   normAnderson = ad.test(dependent.var2 - dependent.var1),
                   corrPearson = cor.test(x = dependent.var1, y = dependent.var2),
                   ttest = t.test(dependent.var1, dependent.var2, paired = TRUE),
-                  EScohensD = cohensD(dependent.var1, dependent.var2)
-              )
+                  EScohensD = cohensD(dependent.var1, dependent.var2),
+                  qqChart = recordPlot()
+             )
   return(results)
 }

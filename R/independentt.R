@@ -30,13 +30,18 @@ independentt <- function(data, dependent.var, group.var){
   #check number of factors and calculate results
   if (length(levels(as.factor(group.var))) != 2) {
     stop(eGroupLevels)
-  }else results <- list(normShapiro = shapiro.test(dependent.var),
-                        normAnderson = ad.test(dependent.var),
-                        hovBartlett = bartlett.test(dependent.var ~ as.factor(group.var)),
-                        hovLevene = leveneTest(dependent.var ~ as.factor(group.var)),
-                        ttest.equal = t.test(dependent.var ~ as.factor(group.var), var.equal = TRUE),
-                        ttest.unequal = t.test(dependent.var ~ as.factor(group.var)),
-                        EScohensD = cohensD(dependent.var ~ group.var)
-                   )
+  }else {
+    qqnorm(dependent.var);
+    qqline(dependent.var);
+    results <- list(normShapiro = shapiro.test(dependent.var),
+                    normAnderson = ad.test(dependent.var),
+                    hovBartlett = bartlett.test(dependent.var ~ as.factor(group.var)),
+                    hovLevene = leveneTest(dependent.var ~ as.factor(group.var)),
+                    ttest = t.test(dependent.var ~ as.factor(group.var), var.equal = TRUE),
+                    ttest.welch = t.test(dependent.var ~ as.factor(group.var)),
+                    EScohensD = cohensD(dependent.var ~ group.var),
+                    qqChart = recordPlot()
+               )
+  }
   return(results)
 }

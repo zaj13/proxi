@@ -11,7 +11,7 @@ independentt(data, dependent.var, group.var)
 
 \item{dependent.var}{Dependent variable of the data frame.}
 
-\item{group.var}{Grouping variable of the data frame.}
+\item{group.var}{Grouping variable of the data frame. Has to equal two.}
 }
 \description{
 This function calculates an independent t-test and relevant supplementary statistics.

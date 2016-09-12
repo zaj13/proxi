@@ -1,6 +1,6 @@
 #' Analysis of Variance
 #'
-#' This function calculates an ANOVA and relevant supplementary statistics.
+#' This function calculates a One-Way ANOVA and relevant supplementary statistics.
 #' @param data The data frame to evaluate.
 #' @param dependent.var Dependent variable of the data frame.
 #' @param group.var Grouping variable of the data frame. Can be greater 2.
@@ -29,13 +29,18 @@ anova <- function(data, dependent.var, group.var){
   #check number of factors and calculate results
   if (!length(levels(as.factor(group.var))) >= 2) {
     stop(eGroupLevels)
-  }else results <- list(normShapiro = shapiro.test(dependent.var),
+  }else {
+    qqnorm(dependent.var)
+    qqline(dependent.var)
+    results <- list(normShapiro = shapiro.test(dependent.var),
                         normAnderson = ad.test(dependent.var),
                         hovBartlett = bartlett.test(dependent.var ~ as.factor(group.var)),
                         hovLevene = leveneTest(dependent.var ~ as.factor(group.var)),
                         ANOVA = summary.aov(aov(dependent.var ~ group.var)),
-                        ESeta2 = etaSquared(aov(dependent.var ~ group.var),type = 3)
-                    )
+                        ESeta2 = etaSquared(aov(dependent.var ~ group.var),type = 3),
+                        qqChart = recordPlot()
+               )
+  }
   return(results)
 
 }
